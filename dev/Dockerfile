@@ -36,8 +36,9 @@ RUN echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" > /etc/ap
     # nginx and PHP-FPM configuration
     sed -e 's/;daemonize = yes/daemonize = no/' -i /usr/local/etc/php-fpm.conf \
     && sed -e 's/;listen\.owner/listen.owner/' -i /usr/local/etc/php-fpm.d/www.conf \
+    && sed -e 's/;listen\.owner/listen.owner/' -i /usr/local/etc/php-fpm.d/www.conf \
     && sed -e 's/;listen\.group/listen.group/' -i /usr/local/etc/php-fpm.d/www.conf \
-    && sed -e 's/;listen\.group/listen.group/' -i /usr/local/etc/php-fpm.d/www.conf \
+    && sed -e 's/listen = 127\.0\.0\.1:9000/listen = unix:\/run\/php\/php7.0-fpm.sock/' -i /usr/local/etc/php-fpm.d/www.conf \
     && echo "\ndate.timezone=Europe/Paris" >> /usr/local/etc/php/conf.d/docker-php-timezone.ini \
     && echo "\ndaemon off;" >> /etc/nginx/nginx.conf \
     && usermod -u 1000 www-data \
