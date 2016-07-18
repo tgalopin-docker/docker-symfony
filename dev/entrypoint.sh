@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-cd /var/www
-chown -R www-data:www-data /var/www
-chmod -R 775 /var/www
+chmod -R 775 /var/www/var/cache/*
+chmod -R 775 /var/www/var/logs/*
+chmod -R 775 /var/www/var/sessions/*
 
 if [[  $* == "bash" ]]
 then
