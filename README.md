@@ -1,1 +1,4 @@
-This repository stores a Docker base image for my Symfony projects.
+symfony
+=======
+
+Base image for Symfony projects based on Alpine and PHP 7.
