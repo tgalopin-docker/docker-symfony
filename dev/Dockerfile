@@ -24,12 +24,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-json \
         php7-mbstring \
         php7-mcrypt \
-        php7-opcache \
         php7-openssl \
         php7-pdo \
         php7-pdo_pgsql \
         php7-phar \
         php7-session \
+        php7-xdebug \
         php7-xml \
         php7-zip \
     && rm -rf /var/cache/apk/* \
@@ -37,7 +37,6 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     && ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
     && composer global require phpunit/phpunit \
-    && composer global require symfony/symfony \
     && ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit \
     && mkdir /app \
     && mkdir /app/web \
