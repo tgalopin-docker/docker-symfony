@@ -37,7 +37,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     && ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
     && composer global require phpunit/phpunit \
-    && composer global require symfony/symfony \
+    && composer global require symfony/framework-standard-edition \
     && ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit \
     && mkdir /app \
     && mkdir /app/web \
