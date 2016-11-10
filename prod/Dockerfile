@@ -7,7 +7,9 @@ ENV LANG="en_US.UTF-8" \
 
 COPY run.sh /usr/local/bin/run.sh
 
-RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories && \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk --update add \
         curl \
         git \
@@ -32,9 +34,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
         php7-session \
         php7-xml \
         php7-zip \
+        tzdata \
+        nodejs \
     && rm -rf /var/cache/apk/* \
     && ln -s /usr/bin/php7 /usr/bin/php \
     && ln -s /usr/sbin/php-fpm7 /usr/bin/php-fpm \
+    && npm install -g yarn \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
     && composer global require phpunit/phpunit \
     && composer global require symfony/framework-standard-edition \
@@ -43,6 +48,8 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
     && mkdir /app/web \
     && echo "<?php phpinfo();" > /app/web/app.php \
     && chmod a+x /usr/local/bin/run.sh
+
+RUN cp /usr/share/zoneinfo/Europe/Paris /etc/localtime && echo "Europe/Paris" > /etc/timezone
 
 COPY php.ini /etc/php7/conf.d/50-setting.ini
 COPY www.conf /etc/php7/php-fpm.d/www.conf
