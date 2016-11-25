@@ -43,7 +43,10 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories 
     && npm install -g yarn \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
     && composer global require phpunit/phpunit \
-    && composer global require symfony/framework-standard-edition \
+    && composer global require symfony/symfony \
+    && composer global require symfony/monolog-bundle \
+    && composer global require doctrine/doctrine-bundle \
+    && composer global require sentry/sentry-symfony \
     && ln -s /root/.composer/vendor/bin/phpunit /usr/local/bin/phpunit \
     && mkdir /app \
     && mkdir /app/web \
